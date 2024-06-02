@@ -1,0 +1,79 @@
+body {  
+    font-family: Arial, sans-serif;  
+    margin: 0;  
+    padding: 0;  
+}  
+  
+header {  
+    background-color: #333;  
+    color: #fff;  
+    padding: 20px;  
+}  
+.product-container {  
+    /* Ensure that the container has sufficient width to accommodate all. product box elements */  
+    /* For example, if you have 5. product box elements, each with a width of 200px, plus a margin, you need a container width of at least 1000px+ */  
+    width: 100%; /* Alternatively, set a fixed width, such as 1100px (5. 200px. product boxes plus 4. 10px margins)*/
+
+    /*Optional: Add some styles, such as padding or margin */  
+    padding: 10px;  
+    text-align: center; /* Can help to center inline block level elements within the container */  
+    /* Use font size: 0; You can eliminate gaps between inline elements (if any), but remember to reset the font size in. product box */  
+    font-size: 0;  
+}  
+  
+.product-box {  
+    display: inline-block;  
+    width: 200px; /* Set the width of each product */  
+    height: auto; /* Automatically adjust height based on content */  
+    border: 1px solid #ccc;  
+    padding: 10px;  
+    margin: 10px; /* The left and right margins will affect the layout, ensuring sufficient space */  
+    text-align: center;  
+    /* Due to the font size: 0 set in the. product container, it is necessary to reset the font size here */  
+    font-size: 16px; /* Or any font size you want */  
+    vertical-align: top; /* Ensure top alignment of elements */  
+}
+  
+nav {  
+    background-color: #333;   
+    overflow: hidden;  
+}  
+
+ 
+nav ul {  
+    list-style-type: none;   
+    margin: 0;  
+    padding: 0;  
+}  
+ 
+nav ul li {  
+    float: left;  
+}  
+
+  
+nav ul li a {  
+    display: block;   
+    color: rgb(50, 98, 95);  
+    text-align: center;   
+    padding: 14px 16px;  
+    text-decoration: none;   
+}  
+  
+nav ul li a:hover,  
+nav ul li a.active {  
+    background-color: #bb7d7d;   
+}  
+  
+.page {  
+    display: none;  
+}  
+.page.active {  
+    display: block;  
+}  
+  
+footer {  
+    background-color: #333;  
+    color: #fff;  
+    text-align: center;  
+    padding: 10px;  
+}
