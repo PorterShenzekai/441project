@@ -53,7 +53,7 @@ nav ul li {
   
 nav ul li a {  
     display: block;   
-    color: rgb(50, 98, 95);  
+    color: rgb(242, 132, 6);  
     text-align: center;   
     padding: 14px 16px;  
     text-decoration: none;   
@@ -70,10 +70,107 @@ nav ul li a.active {
 .page.active {  
     display: block;  
 }  
-  
+
+/* 模态框样式 */  
+.modal {  
+    display: none; /* 默认隐藏 */  
+    position: fixed; /* 固定定位 */  
+    z-index: 1; /* 置于顶层 */  
+    left: 0;  
+    top: 0;  
+    width: 100%; /* 宽度占满屏幕 */  
+    height: 100%; /* 高度占满屏幕 */  
+    overflow: auto; /* 如果需要的话添加滚动条 */  
+    background-color: rgb(241, 235, 235); /* 背景色 */  
+    background-color: rgba(248, 245, 245, 0.4); /* 黑色背景且有透明度 */  
+}  
+
+/* 模态内容样式 */  
+.modal-content {  
+    background-color: #fefefe;  
+    margin: 15% auto; /* 15% 顶部边距，水平自动居中 */  
+    padding: 20px;  
+    border: 1px solid #888;  
+    width: 80%; /* 宽度 */  
+}  
+
+/* 关闭按钮样式 */  
+.close {  
+    color: #aaa;  
+    float: right;  
+    font-size: 28px;  
+    font-weight: bold;  
+}  
+
+.close:hover,  
+.close:focus {  
+    color: black;  
+    text-decoration: none;  
+    cursor: pointer;  
+}  
+
+.background-box {  
+    background-color: lightgray; /* 背景颜色，这里用的是浅灰色 */  
+    padding: 20px; /* 内边距，使内容与背景框边缘保持一定距离 */  
+    border: 1px solid lightskyblue; /* 边框样式，这里设置的是1像素宽的实线，颜色为深灰色 */  
+    border-radius: 8px; /* 边框圆角，这里设置为8像素 */  
+    margin-top: 20px; /* 上外边距，与其他元素保持一定距离 */  
+    margin-bottom: 20px; /* 下外边距，与其他元素保持一定距离 */  
+}  
+
+.hero-banner {  
+    /* Add style to Hero banner */  
+    width: 500px; /* Can be adjusted according to demand */  
+    height: 250px; /* Adjust based on image size and page layout */  
+    background-image: url('A.jpg'); /* If the image loading fails, a background image can be used as an alternative */  
+    background-size: cover; /* Ensure that the image covers the entire container*/  
+    background-position: center; /* Center Image  */  
+    text-align: center; /* If you need to add text above to center it */  
+    position: relative; /* If you need to add an overlay or text on top of it */  
+}  
+
+/* If using<img>tags, this style may be necessary to ensure that the image is displayed correctly */  
+.hero-banner img {  
+    width: 400px; /* Make the image width the same as the container width */  
+    height: auto; /* Maintain the scale of the image */  
+}  
 footer {  
     background-color: #333;  
     color: #fff;  
     text-align: center;  
     padding: 10px;  
 }
+.modal {  
+    display: none; /* 默认隐藏 */  
+    position: fixed; /* 固定定位 */  
+    left: 0;  
+    top: 0;  
+    width: 100px; /* 宽度占满整个屏幕 */  
+    height: 100px; /* 高度占满整个屏幕 */  
+    overflow: auto; /* 如果需要，添加滚动条 */  
+    background-color: rgb(0,0,0); /* 背景色 */  
+    background-color: rgba(0,0,0,0.4); /* 黑色背景且有透明度 */  
+    z-index: 1; /* 模态框置于顶层 */  
+}  
+
+.modal-content {  
+    background-color: #fefefe;  
+    margin: 15% auto; /* 15% 顶部空白和水平居中 */  
+    padding: 20px;  
+    border: 1px solid #888;  
+    width: 80%; /* 宽度 */  
+}  
+
+.close {  
+    color: #aaa;  
+    float: right;  
+    font-size: 28px;  
+    font-weight: bold;  
+}  
+
+.close:hover,  
+.close:focus {  
+    color: black;  
+    text-decoration: none;  
+    cursor: pointer;  
+}  

@@ -1,35 +1,79 @@
-var registeredUser = null; 
+// 新增函数：删除存储的用户名和密码  
+function deleteCredentials() {    
+    localStorage.removeItem('username');    
+    localStorage.removeItem('password');    
+    // 如果你想的话，也可以删除过期时间    
+    localStorage.removeItem('expiration');    
+    
+    alert('Credentials deleted successfully!');    
+    // 根据需要，可以在这里添加其他逻辑，比如重定向到登录页面    
+    // 例如：window.location.href = 'login.html';  
+    // 获取按钮元素  
+var deleteCredentialsButton = document.getElementById('deleteCredentialsButton');  
   
-    function showPage(pageId) {  
-        
-        var pages = document.querySelectorAll('.page');  
-        pages.forEach(function(page) {  
-            page.classList.remove('active');  
-        });  
-          
-        document.getElementById(pageId).classList.add('active');  
-    }  
+// 为按钮添加点击事件监听器  
+deleteCredentialsButton.addEventListener('click', deleteCredentials);  
+}  
   
-    function registerUser() {  
-        var username = document.getElementById("registerUsername").value;  
-        var password = document.getElementById("registerPassword").value;  
-        registeredUser = { username: username, password: password }; 
-        alert("Registration successful! Please log in.");  
-         
-        showPage('loginPage');  
-    }  
   
-    function login() {  
-        var loginUsername = document.getElementById("loginUsername").value;  
-        var loginPassword = document.getElementById("loginPassword").value;  
-        if (registeredUser && registeredUser.username === loginUsername && registeredUser.password === loginPassword) {  
-              
-            showPage('shoppingPage');  
-        } else {  
-            alert("Invalid username or password. Please try again.");  
+function createUser() {    
+    var username = document.getElementById('username').value;  
+    var password = document.getElementById('password').value;  
+  
+    
+    // Simple client verification    
+    if (username === '' || password === '') {    
+        alert('Please fill in both username and password.');    
+        return;    
+    }    
+    
+    // Assuming successful verification, store username and password    
+    localStorage.setItem('username', username);    
+    localStorage.setItem('password', password);    
+    // Set expiration time (only storing timestamps here, additional logic is needed to check for expiration)    
+    localStorage.setItem('expiration', new Date().getTime() + 2 * 24 * 60 * 60 * 1000); // Expires in 2 days    
+    
+    // Prompt the user for successful registration and redirect to the login page (if necessary)    
+    alert('Registration successful!');    
+    window.location.href = 'login.html'; // Assuming you have a login.HTML as the login page    
+}
+function login() {  
+    var loginUsername = document.getElementById('loginUsername').value;  
+    var loginPassword = document.getElementById('loginPassword').value;  
+  
+    // Attempt to obtain username and password from localStorage 
+    var storedUsername = localStorage.getItem('username');  
+    var storedPassword = localStorage.getItem('password');  
+    var expiration = localStorage.getItem('expiration');  
+  
+    // Check if the username and password have been set and have not expired 
+    if (expiration && new Date().getTime() < parseInt(expiration)) {  
+        // If the user has not entered a username and password, and the username and password are remembered and have not expired, attempt automatic login  
+        if (loginUsername === '' && loginPassword === '') {  
+            if (storedUsername && storedPassword) {  
+                // This is just a simulation of the client, and there will be server verification in real applications  
+                alert('Auto login successful!');  
+                // Jump to shopping page  
+                window.location.href = 'shopping.html';  
+                return;  
+            }  
         }  
     }  
-
+  
+    // The username or password is empty, expired, or manually entered by the user  
+    if (loginUsername !== '' && loginPassword !== '') {  
+        // The username and password have been entered, perform login verification  
+        if (loginUsername === storedUsername && loginPassword === storedPassword) {  
+            alert('Login successful!');  
+            // Jump to shopping page  
+            window.location.href = 'shopping.html';  
+        } else {  
+            alert('Incorrect username or password!');  
+        }  
+    } else {  
+        alert('Please fill in both username and password.');  
+    }  
+}
 
 let cartData = [];
         let cartTotal = 0;
@@ -103,3 +147,23 @@ let cartData = [];
                 clearCart();
             });
         });
+
+        document.getElementById('myForm').addEventListener('submit', function(event) {  
+            var formValid = true;  
+            // 查找所有带有 required 属性的 input 元素  
+            var requiredFields = document.querySelectorAll('input[required], textarea[required]');  
+          
+            requiredFields.forEach(function(field) {  
+                if (!field.value.trim()) { // 检查字段值（去除前后空格后）是否为空  
+                    alert('表单不能为空');  
+                    formValid = false;  
+                    event.preventDefault(); // 阻止表单提交  
+                    field.focus(); // 将焦点移至未填写的字段  
+                    return false; // 跳出循环  
+                }  
+            });  
+          
+            if (formValid) {  
+                alert('表单提交成功');  
+            }  
+        });  
